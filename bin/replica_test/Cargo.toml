@@ -1,0 +1,21 @@
+[package]
+name = "replica_test"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bollard = "0.14"
+parking_lot = "0.12"
+tokio = { version = "1", features = ["full"] }
+indicatif = "0.17"
+futures = "0.3"
+log = "0.4"
+pretty_env_logger = "0.4"
+clap = { version = "2.33", features = ["yaml"] }
+spork = { git = "https://github.com/azuqua/spork.rs" }
+
+[dependencies.fred]
+#path = "../.."
+path = "/fred"
+features = ["ignore-auth-error", "replicas", "check-unresponsive", "network-logs", "debug-ids"]
+default-features = false

@@ -1,6 +1,6 @@
 [package]
 name = "fred"
-version = "6.3.0"
+version = "6.4.0"
 authors = ["Alec Embke <aembke@gmail.com>"]
 edition = "2021"
 description = "An async Redis client built on Tokio."
@@ -68,9 +68,10 @@ trust-dns-resolver = { version =  "0.22", optional = true }
 
 [dev-dependencies]
 prometheus = "0.12"
-base64 = "0.13"
+base64 = "0.21"
 subprocess = "0.2.7"
 serde = { version = "1.0", features = ["derive"] }
+bollard = "0.14"
 
 [lib]
 doc = true

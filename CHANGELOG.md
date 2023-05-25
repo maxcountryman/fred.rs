@@ -1,3 +1,6 @@
+## 6.4.0
+
+
 ## 6.3.0
 
 * Fix cluster replica discovery with Elasticache

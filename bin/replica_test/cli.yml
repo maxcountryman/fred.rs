@@ -1,0 +1,49 @@
+name: replica_test
+version: "1.0"
+author: Alec Embke
+about: Run a scale test against replica nodes.
+args:
+  - count:
+      short: c
+      long: count
+      value_name: "NUMBER"
+      help: The number of commands to run.
+      takes_value: true
+      default_value: "10000"
+  - concurrency:
+      short: C
+      long: concurrency
+      value_name: "NUMBER"
+      help: The number of concurrent tasks used to run commands.
+      takes_value: true
+      default_value: "10"
+  - host:
+      short: h
+      long: host
+      value_name: "STRING"
+      help: The hostname of the redis server.
+      takes_value: true
+      default_value: "127.0.0.1"
+  - port:
+      short: p
+      long: port
+      value_name: "NUMBER"
+      help: The port for the redis server.
+      takes_value: true
+      default_value: "6379"
+  - pool:
+      short: P
+      long: pool
+      value_name: "NUMBER"
+      help: The number of clients in the redis connection pool.
+      takes_value: true
+      default_value: "1"
+  - lazy:
+      long: lazy
+      help: Whether to lazily create replica connections (`lazy_connections`)
+      takes_value: false
+subcommands:
+  - pipeline:
+      about: Run the test with pipelining.
+  - no-pipeline:
+      about: Run the test without pipelining.
