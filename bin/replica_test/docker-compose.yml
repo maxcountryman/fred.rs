@@ -16,7 +16,9 @@ services:
     environment:
       RUST_LOG: "${RUST_LOG}"
       REDIS_VERSION: "${REDIS_VERSION}"
+      RUST_BACKTRACE: "${RUST_BACKTRACE}"
     volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
       - "../../../bin/replica_test:/project"
       - "../../..:/fred"
       - "~/.cargo/registry:/usr/local/cargo/registry"

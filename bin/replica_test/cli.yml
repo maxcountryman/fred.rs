@@ -1,22 +1,7 @@
-name: replica_test
+name: replicas
 version: "1.0"
-author: Alec Embke
 about: Run a scale test against replica nodes.
 args:
-  - count:
-      short: c
-      long: count
-      value_name: "NUMBER"
-      help: The number of commands to run.
-      takes_value: true
-      default_value: "10000"
-  - concurrency:
-      short: C
-      long: concurrency
-      value_name: "NUMBER"
-      help: The number of concurrent tasks used to run commands.
-      takes_value: true
-      default_value: "10"
   - host:
       short: h
       long: host
@@ -24,6 +9,18 @@ args:
       help: The hostname of the redis server.
       takes_value: true
       default_value: "127.0.0.1"
+  - username:
+      short: u
+      long: username
+      value_name: "STRING"
+      help: An optional username.
+      takes_value: true
+  - password:
+      short: a
+      long: password
+      value_name: "STRING"
+      help: An optional key or password.
+      takes_value: true
   - port:
       short: p
       long: port
@@ -38,12 +35,37 @@ args:
       help: The number of clients in the redis connection pool.
       takes_value: true
       default_value: "1"
-  - lazy:
-      long: lazy
-      help: Whether to lazily create replica connections (`lazy_connections`)
+  - no-pipeline:
+      long: no-pipeline
+      help: Whether to disable the auto-pipeline feature.
+      takes_value: false
+  - no-lazy:
+      long: no-lazy
+      help: Whether to _not_ lazily create replica connections
       takes_value: false
 subcommands:
-  - pipeline:
-      about: Run the test with pipelining.
-  - no-pipeline:
-      about: Run the test without pipelining.
+  - scale-test:
+      about: Run a scale test against a cluster.
+      args:
+        - count:
+            short: c
+            long: count
+            value_name: "NUMBER"
+            help: The total number of commands to run.
+            takes_value: true
+            default_value: "100000"
+        - concurrency:
+            short: C
+            long: concurrency
+            value_name: "NUMBER"
+            help: The number of concurrent tasks used to run commands.
+            takes_value: true
+            default_value: "10"
+        - quiet:
+            short: q
+            long: quiet
+            help: Whether to only print the final req/sec value.
+            takes_value: false
+  - failover:
+      about: Fail over nodes in a cluster
+      # fail over nodes on an interval. duration to wait between downed nodes, jitter, duration to keep each node down
